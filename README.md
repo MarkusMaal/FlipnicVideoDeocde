@@ -1,5 +1,6 @@
 # FlipnicVideoDeocde
 This tool can help you to extract frames from low-res FMV-s from Flipnic (PS2 game) that have been recorded using video capture software.
+
 ![image](https://user-images.githubusercontent.com/45605071/156902955-325008bb-6b89-4f7d-8c65-bb537bc7f77e.png)
 
 ## Preparations - what you need to do before using this software
