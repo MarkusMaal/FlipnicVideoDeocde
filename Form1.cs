@@ -15,6 +15,7 @@ namespace Flipnic_Video_Deocde
         int y_step = 30;
         bool doneonce = false;
         bool rendering = false;
+        bool ntsc_weirdness = false;
         List<Image> imagelist = new List<Image>();
         Image output;
         public Form1()
@@ -103,8 +104,8 @@ namespace Flipnic_Video_Deocde
                     luma.Image.Dispose();
                     composite.Image.Dispose();
                 } else { doneonce = true;  }
-                Bitmap rgb = new Bitmap(320, 256);
-                Bitmap a255 = new Bitmap(320, 256);
+                Bitmap rgb = new Bitmap(320, 320);
+                Bitmap a255 = new Bitmap(320, 320);
                 int id = trackBar1.Value;
                 Image current = imagelist[id];
                 int final_x = 0;
@@ -113,6 +114,24 @@ namespace Flipnic_Video_Deocde
                 {
                     int y_start = line * y_step;
                     int y_end = y_start + y_step;
+                    // some crap to deal with the fact that line 2 and 6 have different
+                    // heights in NTSC
+
+                    if ((line == 2) && (ntsc_weirdness))
+                    {
+                        y_start += 1;
+                        y_end -= 1;
+                    }
+                    if ((line == 3) && (ntsc_weirdness))
+                    {
+                        y_start += 1;
+                        y_end -= 1;
+                    }
+                    if ((line > 5) && (ntsc_weirdness))
+                    {
+                        y_start += 1;
+                        y_end += 1;
+                    }
                     if (line == 4)
                     {
                         final_y = 0;
@@ -124,16 +143,23 @@ namespace Flipnic_Video_Deocde
                         {
                             if (line < 4)
                             {
-                                rgb.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                if ((y < current.Height) && (final_y < current.Height) && (x < current.Width) && (final_x < current.Width))
+                                {
+                                    rgb.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                }
                             }
                             else
                             {
-                                a255.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                if ((y < current.Height) && (final_y < current.Height) && (x < current.Width) && (final_x < current.Width))
+                                {
+                                    a255.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                }
                             }
                             final_x++;
                         }
                         final_y++;
                     }
+                a:
                     for (int y = y_start; y < y_end; y++)
                     {
                         final_x = 0;
@@ -141,11 +167,17 @@ namespace Flipnic_Video_Deocde
                         {
                             if (line < 4)
                             {
-                                rgb.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                if ((y < current.Height) && (final_y < current.Height) && (x < current.Width) && (final_x < current.Width))
+                                {
+                                    rgb.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                }
                             }
                             else
                             {
-                                a255.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                if ((y < current.Height) && (final_y < current.Height) && (x < current.Width) && (final_x < current.Width))
+                                {
+                                    a255.SetPixel(final_x, final_y, ((Bitmap)current).GetPixel(x, y));
+                                }
                             }
                             final_x++;
                         }
@@ -291,6 +323,20 @@ namespace Flipnic_Video_Deocde
                 textBox4.Enabled = false;
                 textBox5.Enabled = false;
                 trackBar1.Enabled = false;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (!ntsc_weirdness)
+            {
+                textBox5.Text = "34";
+                ntsc_weirdness = true;
+            }
+            else
+            {
+                textBox5.Text = "30";
+                ntsc_weirdness = false;
             }
         }
     }

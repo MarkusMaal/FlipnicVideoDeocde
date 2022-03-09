@@ -45,6 +45,7 @@ namespace Flipnic_Video_Deocde
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.exportImages = new System.Windows.Forms.SaveFileDialog();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chroma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.composite)).BeginInit();
@@ -53,35 +54,35 @@ namespace Flipnic_Video_Deocde
             // 
             // chroma
             // 
-            this.chroma.Location = new System.Drawing.Point(12, 12);
+            this.chroma.Location = new System.Drawing.Point(12, 11);
             this.chroma.Name = "chroma";
-            this.chroma.Size = new System.Drawing.Size(320, 256);
+            this.chroma.Size = new System.Drawing.Size(320, 240);
             this.chroma.TabIndex = 0;
             this.chroma.TabStop = false;
             // 
             // luma
             // 
-            this.luma.Location = new System.Drawing.Point(338, 12);
+            this.luma.Location = new System.Drawing.Point(338, 11);
             this.luma.Name = "luma";
-            this.luma.Size = new System.Drawing.Size(320, 256);
+            this.luma.Size = new System.Drawing.Size(320, 240);
             this.luma.TabIndex = 1;
             this.luma.TabStop = false;
             // 
             // composite
             // 
             this.composite.BackgroundImage = global::Flipnic_Video_Deocde.Properties.Resources.trans_text;
-            this.composite.Location = new System.Drawing.Point(12, 274);
+            this.composite.Location = new System.Drawing.Point(12, 257);
             this.composite.Name = "composite";
-            this.composite.Size = new System.Drawing.Size(320, 256);
+            this.composite.Size = new System.Drawing.Size(320, 240);
             this.composite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.composite.TabIndex = 2;
             this.composite.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(558, 325);
+            this.button1.Location = new System.Drawing.Point(558, 305);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.Size = new System.Drawing.Size(100, 26);
             this.button1.TabIndex = 4;
             this.button1.Text = "Open";
             this.button1.UseVisualStyleBackColor = true;
@@ -94,7 +95,7 @@ namespace Flipnic_Video_Deocde
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(338, 274);
+            this.trackBar1.Location = new System.Drawing.Point(338, 257);
             this.trackBar1.Maximum = 0;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(320, 45);
@@ -104,7 +105,7 @@ namespace Flipnic_Video_Deocde
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(347, 325);
+            this.textBox1.Location = new System.Drawing.Point(347, 305);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(45, 23);
             this.textBox1.TabIndex = 6;
@@ -113,7 +114,7 @@ namespace Flipnic_Video_Deocde
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(398, 325);
+            this.textBox2.Location = new System.Drawing.Point(398, 305);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(45, 23);
             this.textBox2.TabIndex = 7;
@@ -122,7 +123,7 @@ namespace Flipnic_Video_Deocde
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(398, 354);
+            this.textBox3.Location = new System.Drawing.Point(398, 332);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(45, 23);
             this.textBox3.TabIndex = 9;
@@ -131,7 +132,7 @@ namespace Flipnic_Video_Deocde
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(347, 354);
+            this.textBox4.Location = new System.Drawing.Point(347, 332);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(45, 23);
             this.textBox4.TabIndex = 8;
@@ -140,9 +141,9 @@ namespace Flipnic_Video_Deocde
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(452, 325);
+            this.button2.Location = new System.Drawing.Point(452, 305);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.Size = new System.Drawing.Size(100, 26);
             this.button2.TabIndex = 10;
             this.button2.Text = "Play";
             this.button2.UseVisualStyleBackColor = true;
@@ -155,7 +156,7 @@ namespace Flipnic_Video_Deocde
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(347, 383);
+            this.textBox5.Location = new System.Drawing.Point(347, 359);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(45, 23);
             this.textBox5.TabIndex = 11;
@@ -164,9 +165,9 @@ namespace Flipnic_Video_Deocde
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(452, 378);
+            this.button3.Location = new System.Drawing.Point(452, 354);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(123, 28);
+            this.button3.Size = new System.Drawing.Size(123, 26);
             this.button3.TabIndex = 12;
             this.button3.Text = "Export sequence";
             this.button3.UseVisualStyleBackColor = true;
@@ -176,11 +177,22 @@ namespace Flipnic_Video_Deocde
             // 
             this.exportImages.Filter = "Portable Network Graphics|*.png";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(452, 386);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(123, 23);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "NTSC/PAL";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 548);
+            this.ClientSize = new System.Drawing.Size(670, 514);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.button2);
@@ -222,6 +234,7 @@ namespace Flipnic_Video_Deocde
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.SaveFileDialog exportImages;
+        private System.Windows.Forms.Button button4;
     }
 }
 
