@@ -71,6 +71,7 @@ namespace Flipnic_Video_Deocde
 
         private void button1_Click(object sender, EventArgs e)
         {
+            button1.Enabled = false;
             if (openImages.ShowDialog() == DialogResult.OK)
             {
                 if (openImages.FileNames.Length > 0)
@@ -88,6 +89,7 @@ namespace Flipnic_Video_Deocde
                     RefreshList();
                 }
             }
+            button1.Enabled = true;
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -116,21 +118,45 @@ namespace Flipnic_Video_Deocde
                     int y_end = y_start + y_step;
                     // some crap to deal with the fact that line 2 and 6 have different
                     // heights in NTSC
-
-                    if ((line == 2) && (ntsc_weirdness))
+                    if (ntsc_weirdness)
                     {
-                        y_start += 1;
-                        y_end -= 1;
-                    }
-                    if ((line == 3) && (ntsc_weirdness))
-                    {
-                        y_start += 1;
-                        y_end -= 1;
-                    }
-                    if ((line > 5) && (ntsc_weirdness))
-                    {
-                        y_start += 1;
-                        y_end += 1;
+                        if (line == 2)
+                        {
+                            y_start += 1;
+                            y_end += 1;
+                            y_start += 1;
+                        }
+                        if (line == 3)
+                        {
+                            y_start += 1;
+                            y_end += 1;
+                            y_start += 1;
+                        }
+                        if (line == 4)
+                        {
+                            y_start += 1;
+                            y_end += 1;
+                        }
+                        if (line == 5)
+                        {
+                            y_start += 1;
+                            y_end += 1;
+                        }
+                        if (line == 6)
+                        {
+                            y_start += 1;
+                            y_end += 1;
+                        }
+                        if (line == 7)
+                        {
+                            y_start += 1;
+                            y_end += 1;
+                        }
+                        if (line > 5)
+                        {
+                            y_start += 1;
+                            y_end += 1;
+                        }
                     }
                     if (line == 4)
                     {
