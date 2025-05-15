@@ -1,7 +1,21 @@
 # FlipnicVideoDeocde
 This tool can help you to extract frames from low-res FMV-s from Flipnic (PS2 game) that have been recorded using video capture software.
 
-![image](https://user-images.githubusercontent.com/45605071/156902955-325008bb-6b89-4f7d-8c65-bb537bc7f77e.png)
+## DEPRECATED
+Better tools have been developed and should be used instead of this one. This app was just a huge hack and you didn't get decent quality. You should do the following to extract the FMVs instead:
+ * Extract VFS with [FlipnicBinExtractor](https://github.com/MarkusMaal/FlipnicBinExtractor) or use VGMToolBox with the settings specified in that readme
+  * `FlipnicBinExtractor /e STR.BIN` and `FlipnicBinExtractor /e TUTO.BIN`
+ * Demux the desired video with the same tool
+  * `FlipnicBinExtractor /est <FILENAME>.PSS` (use `/lst` instead of `/est` to view a list of streams)
+ * Download MFAudio. Then convert audio streams with this syntax (INT file extension):
+  * `MFAudio /IF44100 /IC2 /II400 /IH0 /OTWAVU "<input filename>.PSS.INT[stream ID]" "<output filename>.WAV"`
+ * Download and install latest version of FFmpeg. Convert video streams & de-interlace with this syntax (IPU file extension):
+  * High-res format, PAL: `ffmpeg -r 25 -i <filename>.PSS.IPU -vf bwdif -c:v qtrle -pix_fmt rgb24 <filename>.mov`
+  * High-res format, NTSC: `ffmpeg -r 29.97-i <filename>.PSS.IPU -vf bwdif -c:v qtrle -pix_fmt rgb24 <filename>.mov`
+  * Low-res format, PAL: `ffmpeg -r 50 -i <filename>.PSS.IPU -vf bwdif -c:v qtrle -pix_fmt rgb24 <filename>.mov`
+  * Low-res format, NTSC: `ffmpeg -r 59.94 -i <filename>.PSS.IPU -vf bwdif -c:v qtrle -pix_fmt rgb24 <filename>.mov`
+ * Optional: Combine audio/video:
+  * `ffmpeg -i <videofile> -i <audiofile> -c:v copy -c:a aac output.mov`
 
 ## Preparations - what you need to do before using this software
 1. First you need to capture a broken FMV clip from Flipnic. To do this, you must replace a hi-resolution FMV that is supposed to play with a low-res one that you want to extract frames from. The hi-resolution FMV-s include the following:
@@ -34,6 +48,8 @@ This tool can help you to extract frames from low-res FMV-s from Flipnic (PS2 ga
 7. Use ffmpeg again to convert the series of images back into a video file. To get a video file with translucency data, use the following syntax:
   * `ffmpeg -i in%%d.png -vcodec png [desired filename].mov` - this will give you an MOV file, which you can use in video editing software
 8. Cut out the parts that aren't part of the cutscene in your desired video editing software. Kdenlive (a free program) should be able to export transparent videos, but more professional software should also work.
+
+![image](https://user-images.githubusercontent.com/45605071/156902955-325008bb-6b89-4f7d-8c65-bb537bc7f77e.png)
 
 ## Command line
 You can specify the file prefix where you want to extract the frames from. So as an example, if the extract files are out1.png, out2.png, out3.png ..., you can use
